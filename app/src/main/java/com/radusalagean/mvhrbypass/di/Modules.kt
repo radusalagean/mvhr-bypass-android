@@ -10,6 +10,10 @@ import com.radusalagean.mvhrbypass.screen.connect.ConnectFragment
 import com.radusalagean.mvhrbypass.screen.connect.ConnectModel
 import com.radusalagean.mvhrbypass.screen.connect.ConnectMvp
 import com.radusalagean.mvhrbypass.screen.connect.ConnectPresenter
+import com.radusalagean.mvhrbypass.screen.main.MainFragment
+import com.radusalagean.mvhrbypass.screen.main.MainModel
+import com.radusalagean.mvhrbypass.screen.main.MainMvp
+import com.radusalagean.mvhrbypass.screen.main.MainPresenter
 import org.koin.dsl.module
 
 val applicationModule = module {
@@ -21,5 +25,10 @@ val applicationModule = module {
         scoped { (getSource() as BaseFragment).activity as ActivityContract }
         scoped<ConnectMvp.Model> { ConnectModel() }
         scoped<ConnectMvp.Presenter> { ConnectPresenter(get(), get(), get()) }
+    }
+    scope<MainFragment> {
+        scoped { (getSource() as BaseFragment).activity as ActivityContract }
+        scoped<MainMvp.Model> { MainModel() }
+        scoped<MainMvp.Presenter> { MainPresenter(get(), get(), get()) }
     }
 }

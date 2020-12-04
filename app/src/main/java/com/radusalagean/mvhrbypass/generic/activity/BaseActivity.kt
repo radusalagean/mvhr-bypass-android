@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.radusalagean.mvhrbypass.generic.fragment.BaseFragment
 import com.radusalagean.mvhrbypass.infobar.*
 import com.radusalagean.mvhrbypass.screen.connect.ConnectFragment
+import com.radusalagean.mvhrbypass.screen.main.MainFragment
 import org.koin.androidx.scope.ScopeActivity
 import timber.log.Timber
 
@@ -138,7 +139,7 @@ abstract class BaseActivity : ScopeActivity(), ActivityContract, InfoBarContract
     }
 
     override fun showMainScreen() {
-
+        showFragment(MainFragment.newInstance())
     }
 
     override fun handleSuccessfulConnect() {

@@ -1,4 +1,4 @@
-package com.radusalagean.mvhrbypass.screen.connect
+package com.radusalagean.mvhrbypass.screen.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,11 +8,11 @@ import com.radusalagean.mvhrbypass.R
 import com.radusalagean.mvhrbypass.generic.activity.ActivityContract
 import com.radusalagean.mvhrbypass.generic.fragment.BaseFragment
 import com.radusalagean.mvhrbypass.generic.mvp.BaseMvp
-import kotlinx.android.synthetic.main.fragment_connect.*
+import kotlinx.android.synthetic.main.fragment_main.*
 
-class ConnectFragment : BaseFragment(), ConnectMvp.View {
+class MainFragment : BaseFragment(), MainMvp.View {
 
-    val presenter: ConnectMvp.Presenter by inject()
+    val presenter: MainMvp.Presenter by inject()
     val activityContract: ActivityContract by inject()
 
     override fun onCreateView(
@@ -20,40 +20,36 @@ class ConnectFragment : BaseFragment(), ConnectMvp.View {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_connect, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
-    // BaseFragment implementation
-
     override fun initViews() {
-        activityContract.getToolbar()?.title = getString(R.string.connect_fragment_title)
+        
     }
 
     override fun disposeViews() {
-        activityContract.getToolbar()?.title = null
+        
     }
 
     override fun registerListeners() {
-        fragment_connect_button_connect.setOnClickListener {
-            activityContract.showMainScreen()
-        }
+        
     }
 
     override fun unregisterListeners() {
-        fragment_connect_button_connect.setOnClickListener(null)
+        
     }
 
     override fun loadData() {
-
+        
     }
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : BaseMvp.View> getPresenter(): BaseMvp.Presenter<T> =
         presenter as BaseMvp.Presenter<T>
 
-    override fun getInfoBarContainer(): ViewGroup = fragment_connect_root_view
+    override fun getInfoBarContainer(): ViewGroup = fragment_main_root_view
 
     companion object {
-        fun newInstance() = ConnectFragment()
+        fun newInstance() = MainFragment()
     }
 }
