@@ -15,6 +15,5 @@ class ConnectPresenter(
 
     override fun initViewModel(fragment: Fragment) {
         model.initViewModel(fragment, ConnectViewModel::class.java)
-        activityContract.showInfoMessage(R.string.app_name)
     }
 }

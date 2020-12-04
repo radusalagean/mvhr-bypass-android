@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+<!--    Info Bar -->
     <dimen name="info_bar_vertical_padding">4dp</dimen>
     <dimen name="info_bar_horizontal_padding">8dp</dimen>
+
+<!--    General -->
+    <dimen name="spacing_s">4dp</dimen>
+    <dimen name="spacing_m">8dp</dimen>
+    <dimen name="spacing_l">12dp</dimen>
+    <dimen name="spacing_xl">16dp</dimen>
+
 </resources>

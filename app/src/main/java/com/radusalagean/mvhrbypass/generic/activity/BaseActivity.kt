@@ -153,6 +153,8 @@ abstract class BaseActivity : ScopeActivity(), ActivityContract, InfoBarContract
 
     }
 
+    override fun getToolbar() = supportActionBar
+
     // InfoBar Contract
 
     /**

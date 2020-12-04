@@ -1,6 +1,7 @@
 package com.radusalagean.mvhrbypass.generic.activity
 
 import androidx.annotation.IdRes
+import androidx.appcompat.app.ActionBar
 
 /**
  * The contract that opens Activity-specific functionality to other components
@@ -52,4 +53,6 @@ interface ActivityContract {
      * Called when the disconnect button is pressed
      */
     fun handleDisconnect()
+
+    fun getToolbar(): ActionBar?
 }

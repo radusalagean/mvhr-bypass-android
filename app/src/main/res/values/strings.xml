@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MVHR Bypass</string>
+
+<!--    Connect Fragment -->
+    <string name="connect_fragment_title">Connect</string>
+    <string name="ip_address">IP Address</string>
+    <string name="default_ip_address">192.168.0.175</string>
+    <string name="connect">Connect</string>
 </resources>
