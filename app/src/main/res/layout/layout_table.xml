@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.radusalagean.mvhrbypass.screen.main.MainViewModel" />
+        <variable
+            name="activityContract"
+            type="com.radusalagean.mvhrbypass.generic.activity.ActivityContract" />
+    </data>
+
+    <merge xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:grid="http://schemas.android.com/apk/res-auto"
+        tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="16:11"
+            grid:columnCount="3"
+            grid:rowCount="3"
+            grid:alignmentMode="alignBounds">
+
+            <TextView
+                style="@style/table_cell_text_view"
+                android:id="@+id/table_cell_current_mode"
+                tools:text="@string/mode_auto"
+                android:text="@{viewModel.hrModeText}"
+                tools:background="@color/color_cell_hr_disabled"
+                android:background="@{viewModel.hrModeBackground}"
+                android:textColor="@android:color/white"
+                android:onClick="@{() -> viewModel.onModeClick(activityContract)}" />
+
+            <TextView
+                style="@style/table_cell_text_view"
+                android:text="@string/exterior"/>
+
+            <TextView
+                style="@style/table_cell_text_view"
+                android:text="@string/interior"/>
+
+            <TextView
+                style="@style/table_cell_text_view"
+                android:text="@string/admission"/>
+
+            <TextView
+                android:id="@+id/table_cell_ext_ad"
+                style="@style/table_cell_text_view.temperature"
+                tools:text="24.0"
+                android:text="@{viewModel.extAd}"/>
+
+            <TextView
+                style="@style/table_cell_text_view.temperature"
+                android:id="@+id/table_cell_int_ad"
+                tools:text="24.0"
+                android:text="@{viewModel.intAd}"/>
+
+            <TextView
+                style="@style/table_cell_text_view"
+                android:text="@string/evacuation"/>
+
+            <TextView
+                style="@style/table_cell_text_view.temperature"
+                android:id="@+id/table_cell_ext_ev"
+                tools:text="24.0"
+                android:text="@{viewModel.extEv}"/>
+
+            <TextView
+                style="@style/table_cell_text_view.temperature"
+                android:id="@+id/table_cell_int_ev"
+                tools:text="24.0"
+                android:text="@{viewModel.intEv}"/>
+
+        </androidx.gridlayout.widget.GridLayout>
+    </merge>
+
+</layout>

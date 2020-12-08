@@ -8,7 +8,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.radusalagean.mvhrbypass.R
 import com.radusalagean.mvhrbypass.extension.findSuitableParent
-import com.radusalagean.mvhrbypass.view.InfoBarView
+import com.radusalagean.mvhrbypass.view.infobar.InfoBarView
 import kotlinx.android.synthetic.main.layout_info_bar.view.*
 
 const val TYPE_ERROR = 1

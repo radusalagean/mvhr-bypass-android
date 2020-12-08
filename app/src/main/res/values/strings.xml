@@ -6,4 +6,16 @@
     <string name="ip_address">IP Address</string>
     <string name="default_ip_address">192.168.0.175</string>
     <string name="connect">Connect</string>
+
+<!--    Main Fragment-->
+    <string name="mode_auto">AUTO</string>
+    <string name="mode_manual">MANUAL</string>
+    <string name="exterior">EXT</string>
+    <string name="interior">INT</string>
+    <string name="admission">AD</string>
+    <string name="evacuation">EV</string>
+
+<!--    Debug-->
+    <string name="onClickStr">On Click</string>
+    <string name="onLongClickStr">On Long Click</string>
 </resources>

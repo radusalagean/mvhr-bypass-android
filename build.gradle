@@ -45,4 +45,5 @@ ext {
     retrofitVersion = '2.9.0'
     fragmentVersion = '1.2.5'
     lifecycleVersion = '2.2.0'
+    gridlayoutVersion = '1.0.0'
 }

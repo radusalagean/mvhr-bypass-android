@@ -1,4 +1,4 @@
-package com.radusalagean.mvhrbypass.view
+package com.radusalagean.mvhrbypass.view.infobar
 
 import android.content.Context
 import android.util.AttributeSet
