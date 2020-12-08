@@ -4,23 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.radusalagean.mvhrbypass.R
-import com.radusalagean.mvhrbypass.generic.activity.ActivityContract
+import androidx.fragment.app.viewModels
+import com.radusalagean.mvhrbypass.databinding.FragmentMainBinding
 import com.radusalagean.mvhrbypass.generic.fragment.BaseFragment
-import com.radusalagean.mvhrbypass.generic.mvp.BaseMvp
 import kotlinx.android.synthetic.main.fragment_main.*
 
-class MainFragment : BaseFragment(), MainMvp.View {
+class MainFragment : BaseFragment() {
 
-    val presenter: MainMvp.Presenter by inject()
-    val activityContract: ActivityContract by inject()
+    private lateinit var binding: FragmentMainBinding
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+    ): View {
+        binding = FragmentMainBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.activityContract = getActivityContract()
+        return binding.root
     }
 
     override fun initViews() {
@@ -42,10 +44,6 @@ class MainFragment : BaseFragment(), MainMvp.View {
     override fun loadData() {
         
     }
-
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : BaseMvp.View> getPresenter(): BaseMvp.Presenter<T> =
-        presenter as BaseMvp.Presenter<T>
 
     override fun getInfoBarContainer(): ViewGroup = fragment_main_root_view
 

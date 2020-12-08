@@ -39,20 +39,5 @@ interface ActivityContract {
     fun showConnectScreen()
     fun showMainScreen()
 
-    /**
-     * Called when the app successfully connected to the MVHR system
-     */
-    fun handleSuccessfulConnect()
-
-    /**
-     * Called when the app failed to connect to the MVHR system
-     */
-    fun handleFailedConnect(t: Throwable?)
-
-    /**
-     * Called when the disconnect button is pressed
-     */
-    fun handleDisconnect()
-
     fun getToolbar(): ActionBar?
 }

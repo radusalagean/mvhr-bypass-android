@@ -13,9 +13,8 @@ import timber.log.Timber
 
 abstract class BaseActivity : ScopeActivity(), ActivityContract, InfoBarContract {
 
-    private val logTag : String = javaClass.simpleName
-
-    val infoBarManager: InfoBarManager by inject()
+    private val logTag: String = javaClass.simpleName
+    private val infoBarManager: InfoBarManager by inject()
 
     // Lifecycle callbacks
 
@@ -140,18 +139,6 @@ abstract class BaseActivity : ScopeActivity(), ActivityContract, InfoBarContract
 
     override fun showMainScreen() {
         showFragment(MainFragment.newInstance())
-    }
-
-    override fun handleSuccessfulConnect() {
-
-    }
-
-    override fun handleFailedConnect(t: Throwable?) {
-
-    }
-
-    override fun handleDisconnect() {
-
     }
 
     override fun getToolbar() = supportActionBar

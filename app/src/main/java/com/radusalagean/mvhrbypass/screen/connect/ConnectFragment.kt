@@ -4,52 +4,48 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.radusalagean.mvhrbypass.R
-import com.radusalagean.mvhrbypass.generic.activity.ActivityContract
+import com.radusalagean.mvhrbypass.databinding.FragmentConnectBinding
 import com.radusalagean.mvhrbypass.generic.fragment.BaseFragment
-import com.radusalagean.mvhrbypass.generic.mvp.BaseMvp
 import kotlinx.android.synthetic.main.fragment_connect.*
 
-class ConnectFragment : BaseFragment(), ConnectMvp.View {
+class ConnectFragment : BaseFragment() {
 
-    val presenter: ConnectMvp.Presenter by inject()
-    val activityContract: ActivityContract by inject()
+    private lateinit var binding: FragmentConnectBinding
+    private val viewModel: ConnectViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_connect, container, false)
+    ): View {
+        binding = FragmentConnectBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.activityContract = getActivityContract()
+        return binding.root
     }
 
     // BaseFragment implementation
 
     override fun initViews() {
-        activityContract.getToolbar()?.title = getString(R.string.connect_fragment_title)
+        getActivityContract()?.getToolbar()?.title = getString(R.string.connect_fragment_title)
     }
 
     override fun disposeViews() {
-        activityContract.getToolbar()?.title = null
+        getActivityContract()?.getToolbar()?.title = null
     }
 
     override fun registerListeners() {
-        fragment_connect_button_connect.setOnClickListener {
-            activityContract.showMainScreen()
-        }
+
     }
 
     override fun unregisterListeners() {
-        fragment_connect_button_connect.setOnClickListener(null)
+
     }
 
     override fun loadData() {
-
     }
-
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : BaseMvp.View> getPresenter(): BaseMvp.Presenter<T> =
-        presenter as BaseMvp.Presenter<T>
 
     override fun getInfoBarContainer(): ViewGroup = fragment_connect_root_view
 
