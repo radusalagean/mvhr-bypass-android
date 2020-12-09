@@ -25,6 +25,7 @@ class MainFragment : BaseFragment() {
         binding = FragmentMainBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.activityContract = getActivityContract()
+        binding.lifecycleOwner = this
         return binding.root
     }
 

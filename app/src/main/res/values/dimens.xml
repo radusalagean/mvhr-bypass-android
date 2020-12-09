@@ -11,4 +11,7 @@
     <dimen name="spacing_l">12dp</dimen>
     <dimen name="spacing_xl">16dp</dimen>
 
+<!--    TempBarView-->
+    <dimen name="temp_bar_view_height">22dp</dimen>
+
 </resources>

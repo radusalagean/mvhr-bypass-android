@@ -16,12 +16,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Table -->
         <include layout="@layout/layout_table"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             bind:viewModel="@{viewModel}"
             bind:activityContract="@{activityContract}"/>
+
+        <!-- Int Ev Bar -->
+        <com.radusalagean.mvhrbypass.view.tempbar.TempBarView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/temp_bar_view_height"
+            android:id="@+id/fragment_main_int_ev_temp_bar"
+            app:layout_constraintTop_toBottomOf="@id/table"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rangeLow="@integer/range_low"
+            app:rangeHigh="@integer/range_high"
+            app:barColor="@color/color_temp_bar_int_ev"
+            app:currentTempColor="@color/color_temp_bar_current_temp_color"
+            app:hysteresisColor="@color/color_temp_bar_hysteresis_color"
+            app:valueLow="@{viewModel.intEvLow}"
+            app:plusInfiniteValue="true"
+            app:hysteresis="@{viewModel.hysteresis}"
+            app:currentTemp="@{viewModel.intEv}"
+            android:layout_marginTop="@dimen/spacing_xl"/>
+
+        <!-- Ext Ad Bar -->
+        <com.radusalagean.mvhrbypass.view.tempbar.TempBarView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/temp_bar_view_height"
+            android:id="@+id/fragment_main_ext_ad_temp_bar"
+            app:layout_constraintTop_toBottomOf="@id/fragment_main_int_ev_temp_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rangeLow="@integer/range_low"
+            app:rangeHigh="@integer/range_high"
+            app:barColor="@color/color_temp_bar_ext_ad"
+            app:currentTempColor="@color/color_temp_bar_current_temp_color"
+            app:hysteresisColor="@color/color_temp_bar_hysteresis_color"
+            app:valueLow="@{viewModel.extAdLow}"
+            app:valueHigh="@{viewModel.extAdHigh}"
+            app:hysteresis="@{viewModel.hysteresis}"
+            app:currentTemp="@{viewModel.extAd}"
+            android:layout_marginTop="@dimen/spacing_xl"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

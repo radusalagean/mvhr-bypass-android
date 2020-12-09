@@ -10,10 +10,18 @@ class MainViewModel : BaseViewModel() {
 
     val hrModeText = MutableLiveData<String>()
     val hrModeBackground = MutableLiveData<Drawable>()
-    val extEv = MutableLiveData("24.2")
-    val extAd = MutableLiveData("24.2")
-    val intAd = MutableLiveData("24.2")
-    val intEv = MutableLiveData("24.2")
+    val extEv = MutableLiveData(16.2f)
+    val extAd = MutableLiveData(12.5f)
+    val intAd = MutableLiveData(22.1f)
+    val intEv = MutableLiveData(24.2f)
+    val extEvFormatted = MutableLiveData("16.2")
+    val extAdFormatted = MutableLiveData("12.5")
+    val intAdFormatted = MutableLiveData("22.1")
+    val intEvFormatted = MutableLiveData("24.2")
+    val hysteresis = MutableLiveData(1.0f)
+    val intEvLow = MutableLiveData(23)
+    val extAdLow = MutableLiveData(11)
+    val extAdHigh = MutableLiveData(24)
 
     fun onModeClick(activityContract: ActivityContract) {
         activityContract.showInfoMessage(R.string.onClickStr)

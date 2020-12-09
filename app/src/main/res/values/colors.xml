@@ -16,4 +16,11 @@
     <!--Table-->
     <color name="color_cell_hr_disabled">#0000FF</color>
     <color name="color_cell_hr_enabled">#ff0000</color>
+
+    <!--TempBars-->
+    <color name="color_temp_bar_int_ev">#FFA500</color>
+    <color name="color_temp_bar_ext_ad">#008080</color>
+    <color name="color_temp_bar_current_temp_color">#FF0000</color>
+    <color name="color_temp_bar_hysteresis_color">#000000</color>
+
 </resources>

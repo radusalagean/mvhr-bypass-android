@@ -19,6 +19,7 @@
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:id="@+id/table"
             app:layout_constraintDimensionRatio="16:11"
             grid:columnCount="3"
             grid:rowCount="3"
@@ -50,13 +51,13 @@
                 android:id="@+id/table_cell_ext_ad"
                 style="@style/table_cell_text_view.temperature"
                 tools:text="24.0"
-                android:text="@{viewModel.extAd}"/>
+                android:text="@{viewModel.extAdFormatted}"/>
 
             <TextView
                 style="@style/table_cell_text_view.temperature"
                 android:id="@+id/table_cell_int_ad"
                 tools:text="24.0"
-                android:text="@{viewModel.intAd}"/>
+                android:text="@{viewModel.intAdFormatted}"/>
 
             <TextView
                 style="@style/table_cell_text_view"
@@ -66,13 +67,13 @@
                 style="@style/table_cell_text_view.temperature"
                 android:id="@+id/table_cell_ext_ev"
                 tools:text="24.0"
-                android:text="@{viewModel.extEv}"/>
+                android:text="@{viewModel.extEvFormatted}"/>
 
             <TextView
                 style="@style/table_cell_text_view.temperature"
                 android:id="@+id/table_cell_int_ev"
                 tools:text="24.0"
-                android:text="@{viewModel.intEv}"/>
+                android:text="@{viewModel.intEvFormatted}"/>
 
         </androidx.gridlayout.widget.GridLayout>
     </merge>

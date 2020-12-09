@@ -23,17 +23,16 @@ class ConnectFragment : BaseFragment() {
         binding = FragmentConnectBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.activityContract = getActivityContract()
+        binding.lifecycleOwner = this
         return binding.root
     }
 
     // BaseFragment implementation
 
     override fun initViews() {
-        getActivityContract()?.getToolbar()?.title = getString(R.string.connect_fragment_title)
     }
 
     override fun disposeViews() {
-        getActivityContract()?.getToolbar()?.title = null
     }
 
     override fun registerListeners() {

@@ -141,8 +141,6 @@ abstract class BaseActivity : ScopeActivity(), ActivityContract, InfoBarContract
         showFragment(MainFragment.newInstance())
     }
 
-    override fun getToolbar() = supportActionBar
-
     // InfoBar Contract
 
     /**
