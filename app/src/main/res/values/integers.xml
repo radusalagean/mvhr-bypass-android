@@ -2,4 +2,5 @@
 <resources>
     <integer name="range_low">10</integer>
     <integer name="range_high">40</integer>
+    <integer name="ext_ad_min_separation_value">3</integer>
 </resources>

@@ -66,7 +66,6 @@
                 android:layout_marginTop="@dimen/spacing_m"
                 android:valueFrom="@integer/range_low"
                 android:valueTo="@integer/range_high"
-                android:stepSize="1"
                 android:value="@={viewModel.intEvLow}"
                 app:trackColorActive="@color/color_temp_bar_int_ev_24"
                 app:trackColorInactive="@color/color_temp_bar_int_ev"
@@ -108,11 +107,12 @@
                 android:layout_marginTop="@dimen/spacing_m"
                 android:valueFrom="@integer/range_low"
                 android:valueTo="@integer/range_high"
-                android:stepSize="1"
+
                 app:values="@={viewModel.extAdPair}"
                 app:trackColorActive="@color/color_temp_bar_ext_ad"
                 app:trackColorInactive="@color/color_temp_bar_ext_ad_24"
                 app:thumbColor="@color/color_temp_bar_ext_ad"
+                app:minSeparationValue="@{@integer/ext_ad_min_separation_value}"
                 style="@style/temp_bar_slider"/>
 
             <!-- Hysteresis -->

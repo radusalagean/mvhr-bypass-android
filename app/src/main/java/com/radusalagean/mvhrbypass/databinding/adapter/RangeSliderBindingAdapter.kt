@@ -24,4 +24,9 @@ object RangeSliderBindingAdapter {
             attrChange.onChange()
         }
     }
+
+    @JvmStatic @BindingAdapter("app:minSeparationValue")
+    fun setMinSeparationValue(rangeSlider: RangeSlider, minSeparationValue: Int) {
+        rangeSlider.setMinSeparationValue(minSeparationValue.toFloat())
+    }
 }

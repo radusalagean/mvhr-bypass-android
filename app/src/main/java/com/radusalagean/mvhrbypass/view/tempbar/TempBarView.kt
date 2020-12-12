@@ -104,11 +104,11 @@ class TempBarView : View {
     private fun assertSpecs() {
         if (rangeLow >= rangeHigh)
             error("rangeLow has to be lower than rangeHigh")
-        if (rangeLow + MIN_UNITS >= rangeHigh)
+        if (rangeLow + MIN_UNITS > rangeHigh)
             error("there has to be a range of at least $MIN_UNITS units between rangeLow and rangeHigh")
         if (valueLow >= valueHigh)
             error("valueLow has to be lower than valueHigh")
-        if (valueLow + MIN_UNITS >= valueHigh)
+        if (valueLow + MIN_UNITS > valueHigh)
             error("there has to be a range of at least $MIN_UNITS units between valueLow and valueHigh")
         if (valueLow < rangeLow || valueLow >= rangeHigh)
             error("valueLow is out of range")
