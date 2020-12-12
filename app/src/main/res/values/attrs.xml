@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="TempBarView">
         <!-- Static values -->
+        <attr name="tempBarHeight" format="dimension" />
         <attr name="rangeLow" format="integer" />
         <attr name="rangeHigh" format="integer" />
         <attr name="plusInfiniteValue" format="boolean"/>
@@ -9,6 +10,8 @@
         <attr name="currentTempColor" format="color" />
         <attr name="hysteresisColor" format="color" />
         <attr name="currentTempWidth" format="dimension" />
+        <attr name="barLabelSpacing" format="dimension" />
+        <attr name="labelTextSize" format="dimension" />
         <!-- Dynamic values -->
         <attr name="valueLow" format="integer" />
         <attr name="valueHigh" format="integer" />
@@ -17,6 +20,7 @@
     </declare-styleable>
 
     <style name="TempBarViewDefStyle">
+        <item name="tempBarHeight">8dp</item>
         <item name="rangeLow">0</item>
         <item name="rangeHigh">20</item>
         <item name="plusInfiniteValue">false</item>
@@ -24,6 +28,8 @@
         <item name="currentTempColor">@android:color/holo_blue_bright</item>
         <item name="hysteresisColor">@android:color/holo_red_light</item>
         <item name="currentTempWidth">1dp</item>
+        <item name="barLabelSpacing">2dp</item>
+        <item name="labelTextSize">12sp</item>
         <item name="valueLow">10</item>
         <item name="valueHigh">15</item>
         <item name="hysteresis">1.0</item>

@@ -2,6 +2,7 @@ package com.radusalagean.mvhrbypass.view.tempbar
 
 import android.content.Context
 import android.graphics.*
+import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
@@ -11,6 +12,7 @@ import com.radusalagean.mvhrbypass.R
 class TempBarView : View {
 
     // Static values
+    @Dimension private var tempBarHeight: Float = 0.0f
     private var rangeLow: Int = 0
     private var rangeHigh: Int = 0
     private var plusInfiniteValue: Boolean = false
@@ -22,31 +24,29 @@ class TempBarView : View {
     @ColorInt private var barColor: Int = 0
     @ColorInt private var currentTempColor: Int = 0
     @ColorInt private var hysteresisColor: Int = 0
-    @Dimension private var currentTempWidth = 0.0f
+    @Dimension private var currentTempWidth: Float = 0.0f
+    @Dimension private var barLabelSpacing: Float = 0.0f
+    @Dimension private var labelTextSize: Float = 0.0f
 
     // Dynamic values
     var valueLow: Int = 0
         set(value) {
             field = value
-//            assertSpecs()
             invalidate()
         }
     var valueHigh: Int = 0
         set(value) {
             field = value
-//            assertSpecs()
             invalidate()
         }
     var hysteresis: Float = 0.0f
         set(value) {
             field = value
-            assertSpecs()
             invalidate()
         }
     var currentTemp: Float = 0.0f
         set(value) {
             field = value
-            assertSpecs()
             invalidate()
         }
 
@@ -67,6 +67,7 @@ class TempBarView : View {
     }
     private lateinit var hysteresisPaint: Paint
     private lateinit var currentTempPaint: Paint
+    private lateinit var labelTextPaint: TextPaint
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
@@ -77,12 +78,15 @@ class TempBarView : View {
                 0,
                 R.style.TempBarViewDefStyle
         )
+        tempBarHeight = typedArr.getDimension(R.styleable.TempBarView_tempBarHeight, 0.0f)
         rangeLow = typedArr.getInt(R.styleable.TempBarView_rangeLow, 0)
         rangeHigh = typedArr.getInt(R.styleable.TempBarView_rangeHigh, 0)
         barColor = typedArr.getColor(R.styleable.TempBarView_barColor, 0)
         currentTempColor = typedArr.getColor(R.styleable.TempBarView_currentTempColor, 0)
         hysteresisColor = typedArr.getColor(R.styleable.TempBarView_hysteresisColor, 0)
         currentTempWidth = typedArr.getDimension(R.styleable.TempBarView_currentTempWidth, 0.0f)
+        barLabelSpacing = typedArr.getDimension(R.styleable.TempBarView_barLabelSpacing, 0.0f)
+        labelTextSize = typedArr.getDimension(R.styleable.TempBarView_labelTextSize, 0.0f)
         valueLow = typedArr.getInt(R.styleable.TempBarView_valueLow, 0)
         valueHigh = typedArr.getInt(R.styleable.TempBarView_valueHigh, 0)
         plusInfiniteValue = typedArr.getBoolean(R.styleable.TempBarView_plusInfiniteValue, false)
@@ -92,12 +96,20 @@ class TempBarView : View {
         barPaint = buildPaint(barColor)
         hysteresisPaint = buildPaint(hysteresisColor)
         currentTempPaint = buildPaint(currentTempColor)
+        labelTextPaint = buildTextPaint(barColor, labelTextSize)
         assertSpecs()
     }
 
     private fun buildPaint(@ColorInt color: Int): Paint {
         return Paint(Paint.ANTI_ALIAS_FLAG).apply {
             setColor(color)
+        }
+    }
+
+    private fun buildTextPaint(@ColorInt color: Int, @Dimension textSize: Float): TextPaint {
+        return TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
+            setColor(color)
+            this.textSize = textSize
         }
     }
 
@@ -118,11 +130,11 @@ class TempBarView : View {
             error("hysteresis is out of range")
     }
 
-    fun getEffectiveWidth(): Int {
+    private fun getEffectiveWidth(): Int {
         return width - paddingStart - paddingEnd
     }
 
-    fun getTempRatio(temp: Float): Float {
+    private fun getTempRatio(temp: Float): Float {
         return (temp - rangeLow) / ((rangeHigh - rangeLow).toFloat())
     }
 
@@ -134,14 +146,14 @@ class TempBarView : View {
             getEffectiveWidth() * getTempRatio(valueHigh.toFloat())
         } + paddingStart
         canvas.drawRect(
-                xStart, 0.0f, xEnd, height.toFloat(), barPaint
+                xStart, 0.0f, xEnd, tempBarHeight, barPaint
         )
         if (plusInfiniteValue && paddingEnd > 0) {
             canvas.drawRect(
                     (width - paddingEnd).toFloat(),
                     0.0f,
                     width.toFloat(),
-                    height.toFloat(),
+                    tempBarHeight,
                     barPlusInfinitePaint
             )
         }
@@ -155,14 +167,14 @@ class TempBarView : View {
             xStart = getEffectiveWidth() * getTempRatio(valueLow - hysteresis) + paddingStart
             xEnd = getEffectiveWidth() * getTempRatio(valueLow + hysteresis) + paddingStart
             canvas.drawRect(
-                    xStart, 0.0f, xEnd, height.toFloat(), hysteresisPaint
+                    xStart, 0.0f, xEnd, tempBarHeight, hysteresisPaint
             )
             // high end
             if (!plusInfiniteValue) {
                 xStart = getEffectiveWidth() * getTempRatio(valueHigh - hysteresis) + paddingStart
                 xEnd = getEffectiveWidth() * getTempRatio(valueHigh + hysteresis) + paddingStart
                 canvas.drawRect(
-                        xStart, 0.0f, xEnd, height.toFloat(), hysteresisPaint
+                        xStart, 0.0f, xEnd, tempBarHeight, hysteresisPaint
                 )
             }
         }
@@ -175,10 +187,40 @@ class TempBarView : View {
                     x,
                     0.0f,
                     x + currentTempWidth,
-                    height.toFloat(),
+                    tempBarHeight,
                     currentTempPaint
             )
         }
+    }
+
+    private fun drawLabels(canvas: Canvas) {
+
+        fun getTextX(value: Int, text: String): Float {
+            val textWidth = labelTextPaint.measureText(text)
+            return paddingStart + getEffectiveWidth() * getTempRatio(value.toFloat()) - (textWidth / 2)
+        }
+
+        var x: Float
+        val y = tempBarHeight + barLabelSpacing + labelTextSize
+        var text: String
+        // low end
+        text = valueLow.toString()
+        x = getTextX(valueLow, text)
+        canvas.drawText(text, x, y, labelTextPaint)
+        // high end
+        if (!plusInfiniteValue) {
+            text = valueHigh.toString()
+            x = getTextX(valueHigh, text)
+            canvas.drawText(text, x, y, labelTextPaint)
+        }
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val height = (paddingTop + tempBarHeight + barLabelSpacing + labelTextSize + paddingBottom).toInt()
+        setMeasuredDimension(
+            resolveSize(width, widthMeasureSpec),
+            resolveSize(height, heightMeasureSpec)
+        )
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -186,6 +228,7 @@ class TempBarView : View {
             drawBar(it)
             drawHysteresis(it)
             drawCurrentTemp(it)
+            drawLabels(it)
         }
     }
 

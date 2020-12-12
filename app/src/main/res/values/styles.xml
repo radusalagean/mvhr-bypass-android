@@ -16,12 +16,15 @@
 
     <style name="temp_bar_view">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/temp_bar_view_height</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="tempBarHeight">@dimen/temp_bar_view_temp_bar_height</item>
         <item name="rangeLow">@integer/range_low</item>
         <item name="rangeHigh">@integer/range_high</item>
         <item name="currentTempColor">@color/color_temp_bar_current_temp_color</item>
         <item name="hysteresisColor">@color/color_hysteresis_24</item>
         <item name="currentTempWidth">@dimen/temp_bar_view_current_temp_width</item>
+        <item name="barLabelSpacing">@dimen/temp_bar_view_bar_label_spacing</item>
+        <item name="labelTextSize">@dimen/temp_bar_view_label_text_size</item>
         <item name="android:paddingStart">@dimen/temp_bar_view_horizontal_padding</item>
         <item name="android:paddingEnd">@dimen/temp_bar_view_horizontal_padding</item>
     </style>
@@ -33,5 +36,6 @@
     <style name="temp_bar_slider">
         <item name="labelBehavior">gone</item>
         <item name="haloRadius">0dp</item>
+        <item name="haloColor">@android:color/transparent</item>
     </style>
 </resources>

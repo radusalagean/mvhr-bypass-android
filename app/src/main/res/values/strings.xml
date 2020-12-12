@@ -16,7 +16,7 @@
     <string name="evacuation">EV</string>
     <string name="interior_evacuation">INT EV</string>
     <string name="exterior_admission">EXT AD</string>
-    <string name="hysteresis">HYSTERESIS</string>
+    <string name="hysteresis">HYSTERESIS: ±%1$.1f</string>
 
 <!--    Debug-->
     <string name="onClickStr">On Click</string>

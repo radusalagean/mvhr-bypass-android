@@ -16,8 +16,10 @@
     <dimen name="spacing_xl">16dp</dimen>
 
 <!--    TempBarView-->
-    <dimen name="temp_bar_view_height">22dp</dimen>
+    <dimen name="temp_bar_view_temp_bar_height">22dp</dimen>
     <dimen name="temp_bar_view_current_temp_width">2dp</dimen>
     <dimen name="temp_bar_view_horizontal_padding">16dp</dimen>
+    <dimen name="temp_bar_view_bar_label_spacing">4dp</dimen>
+    <dimen name="temp_bar_view_label_text_size">20sp</dimen>
 
 </resources>
