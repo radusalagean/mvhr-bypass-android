@@ -14,6 +14,9 @@
     <string name="interior">INT</string>
     <string name="admission">AD</string>
     <string name="evacuation">EV</string>
+    <string name="interior_evacuation">INT EV</string>
+    <string name="exterior_admission">EXT AD</string>
+    <string name="hysteresis">HYSTERESIS</string>
 
 <!--    Debug-->
     <string name="onClickStr">On Click</string>

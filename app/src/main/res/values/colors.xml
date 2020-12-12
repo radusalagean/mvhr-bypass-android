@@ -19,8 +19,13 @@
 
     <!--TempBars-->
     <color name="color_temp_bar_int_ev">#FFA500</color>
-    <color name="color_temp_bar_ext_ad">#008080</color>
+    <color name="color_temp_bar_int_ev_24">#3DFFA500</color>
+    <color name="color_temp_bar_ext_ad">#00BCD4</color>
+    <color name="color_temp_bar_ext_ad_24">#3D00BCD4</color>
     <color name="color_temp_bar_current_temp_color">#FF0000</color>
-    <color name="color_temp_bar_hysteresis_color">#000000</color>
+
+    <!--Hysteresis-->
+    <color name="color_hysteresis">#808080</color>
+    <color name="color_hysteresis_24">#3D808080</color>
 
 </resources>
