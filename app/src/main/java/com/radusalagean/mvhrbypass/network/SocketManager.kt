@@ -5,6 +5,8 @@ import com.google.gson.Gson
 import com.radusalagean.mvhrbypass.network.event.SocketIncomingEvent
 import com.radusalagean.mvhrbypass.network.model.InitData
 import com.radusalagean.mvhrbypass.network.model.Root
+import com.radusalagean.mvhrbypass.network.model.State
+import com.radusalagean.mvhrbypass.network.model.Temperatures
 import okhttp3.*
 import okio.ByteString
 import timber.log.Timber
@@ -30,6 +32,10 @@ class SocketManager(
                 when (root.event) {
                     SocketIncomingEvent.RESPONSE_INIT_DATA.eventName ->
                         subscribers.forEach { it.onInitDataReceived(root.data as InitData) }
+                    SocketIncomingEvent.RESPONSE_STATE.eventName ->
+                        subscribers.forEach { it.onStateReceived(root.data as State) }
+                    SocketIncomingEvent.RESPONSE_TEMPERATURES.eventName ->
+                        subscribers.forEach { it.onTemperaturesReceived(root.data as Temperatures) }
                 }
             }
             Timber.d(root.toString())

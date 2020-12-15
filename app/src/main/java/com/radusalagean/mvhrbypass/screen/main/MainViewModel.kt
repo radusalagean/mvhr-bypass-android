@@ -93,6 +93,14 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
         _refreshing.value = false
     }
 
+    override fun onStateReceived(state: State) {
+        assignState(state)
+    }
+
+    override fun onTemperaturesReceived(temperatures: Temperatures) {
+        assignTemperatures(temperatures)
+    }
+
     companion object {
         const val TEMP_ERROR = -100.0f
     }
