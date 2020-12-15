@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.radusalagean.mvhrbypass">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".application.MvhrApp"
         android:allowBackup="false"
@@ -10,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.MVHRBypass"
-        android:fullBackupContent="false">
+        android:fullBackupContent="false"
+        android:usesCleartextTraffic="true"> <!-- TODO Would be better to have a secure connection-->
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

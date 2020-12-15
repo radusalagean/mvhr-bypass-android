@@ -36,5 +36,5 @@ interface ActivityContract {
     // Show specific screens
 
     fun showConnectScreen()
-    fun showMainScreen()
+    fun showMainScreen(socketAddress: String)
 }

@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">MVHR Bypass</string>
 
+<!--    Messages-->
+    <string name="message_connection_failed">Connection failed</string>
+
 <!--    Connect Fragment -->
     <string name="connect_fragment_title">Connect</string>
     <string name="ip_address">IP Address</string>
-    <string name="default_ip_address">192.168.0.175</string>
     <string name="connect">Connect</string>
 
 <!--    Main Fragment-->
@@ -14,6 +16,8 @@
     <string name="interior">INT</string>
     <string name="admission">AD</string>
     <string name="evacuation">EV</string>
+    <string name="table_temp_format">%.1f</string>
+    <string name="table_temp_error">ERR</string>
     <string name="interior_evacuation">INT EV</string>
     <string name="exterior_admission">EXT AD</string>
     <string name="hysteresis">HYSTERESIS: ±%1$.1f</string>

@@ -9,8 +9,10 @@ import com.google.android.material.slider.RangeSlider
 object RangeSliderBindingAdapter {
 
     @JvmStatic @BindingAdapter("values")
-    fun setValues(rangeSlider: RangeSlider, values: LiveData<Pair<Int, Int>>) {
-        rangeSlider.values = listOf(values.value!!.first.toFloat(), values.value!!.second.toFloat())
+    fun setValues(rangeSlider: RangeSlider, values: LiveData<Pair<Int, Int>?>) {
+        values.value?.let {
+            rangeSlider.values = listOf(it.first.toFloat(), it.second.toFloat())
+        }
     }
 
     @JvmStatic @InverseBindingAdapter(attribute = "app:values")

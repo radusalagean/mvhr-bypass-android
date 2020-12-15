@@ -16,6 +16,8 @@
     <!--Table-->
     <color name="color_cell_hr_disabled">#0000FF</color>
     <color name="color_cell_hr_enabled">#ff0000</color>
+    <color name="color_temp_error">#FF0000</color>
+    <color name="color_temp_ok">@android:color/primary_text_light</color>
 
     <!--TempBars-->
     <color name="color_temp_bar_int_ev">#FFA500</color>

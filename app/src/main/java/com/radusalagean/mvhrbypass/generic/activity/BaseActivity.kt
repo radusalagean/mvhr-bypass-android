@@ -137,8 +137,8 @@ abstract class BaseActivity : ScopeActivity(), ActivityContract, InfoBarContract
         showFragment(ConnectFragment.newInstance())
     }
 
-    override fun showMainScreen() {
-        showFragment(MainFragment.newInstance())
+    override fun showMainScreen(socketAddress: String) {
+        showFragment(MainFragment.newInstance(socketAddress))
     }
 
     // InfoBar Contract
