@@ -73,8 +73,15 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
             extAdMax = extAdPair.value!!.second,
             hysteresis = hysteresis.value!!
         )
-        syncEditableFieldsWithOriginal()
-        refreshEditMode()
+        editMode.value = false
+    }
+
+    fun onBackPressed(): Boolean {
+        return if (editMode.value == true) {
+            syncEditableFieldsWithOriginal()
+            refreshEditMode()
+            true
+        } else false
     }
 
     fun connect() {

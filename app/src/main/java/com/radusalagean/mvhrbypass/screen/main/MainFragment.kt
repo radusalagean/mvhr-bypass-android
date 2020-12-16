@@ -66,6 +66,10 @@ class MainFragment : BaseFragment(), SocketSubscriber {
 
     override fun getInfoBarContainer(): ViewGroup = fragment_main_root_view
 
+    override fun onBackPressed(): Boolean {
+        return viewModel.onBackPressed()
+    }
+
     companion object {
 
         const val ARG_SOCKET_ADDRESS = "socket_address"
