@@ -71,23 +71,35 @@ class SocketManager(
     }
 
     fun requestHrModeAuto() {
-        sendEventOnlyMessage(SocketOutgoingEvent.REQUEST_HR_MODE_AUTO.eventName)
+        sendEventMessage<Unit>(SocketOutgoingEvent.REQUEST_HR_MODE_AUTO.eventName)
     }
 
     fun requestHrModeManual() {
-        sendEventOnlyMessage(SocketOutgoingEvent.REQUEST_HR_MODE_MANUAL.eventName)
+        sendEventMessage<Unit>(SocketOutgoingEvent.REQUEST_HR_MODE_MANUAL.eventName)
     }
 
     fun requestEnableHr() {
-        sendEventOnlyMessage(SocketOutgoingEvent.REQUEST_ENABLE_HR.eventName)
+        sendEventMessage<Unit>(SocketOutgoingEvent.REQUEST_ENABLE_HR.eventName)
     }
 
     fun requestDisableHr() {
-        sendEventOnlyMessage(SocketOutgoingEvent.REQUEST_DISABLE_HR.eventName)
+        sendEventMessage<Unit>(SocketOutgoingEvent.REQUEST_DISABLE_HR.eventName)
     }
 
-    private fun sendEventOnlyMessage(eventName: String) {
-        val root = Root<Unit>(eventName)
+    fun requestApplyStateTemperatures(intEvMin: Int, extAdMin: Int, extAdMax: Int, hysteresis: Float) {
+        sendEventMessage(
+            eventName = SocketOutgoingEvent.REQUEST_APPLY_STATE_TEMPERATURES.eventName,
+            data = State(
+                intEvMin = intEvMin,
+                extAdMin = extAdMin,
+                extAdMax = extAdMax,
+                hysteresis = hysteresis
+            )
+        )
+    }
+
+    private fun <T> sendEventMessage(eventName: String, data: T? = null) {
+        val root = Root(eventName, data)
         val json = gson.toJson(root)
         webSocket.send(json)
     }

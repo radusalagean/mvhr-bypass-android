@@ -85,7 +85,8 @@
                     app:trackColorActive="@color/color_temp_bar_int_ev_24"
                     app:trackColorInactive="@color/color_temp_bar_int_ev"
                     app:thumbColor="@color/color_temp_bar_int_ev"
-                    style="@style/temp_bar_slider"/>
+                    app:onChangeListener="@{() -> viewModel.onSliderChanged()}"
+                    style="@style/temp_bar_slider" />
 
                 <!-- Ext Ad Bar -->
 
@@ -122,12 +123,12 @@
                     android:layout_marginTop="@dimen/spacing_m"
                     android:valueFrom="@integer/range_low"
                     android:valueTo="@integer/range_high"
-
                     app:values="@={viewModel.extAdPair}"
                     app:trackColorActive="@color/color_temp_bar_ext_ad"
                     app:trackColorInactive="@color/color_temp_bar_ext_ad_24"
                     app:thumbColor="@color/color_temp_bar_ext_ad"
                     app:minSeparationValue="@{@integer/ext_ad_min_separation_value}"
+                    app:onChangeListener="@{() -> viewModel.onSliderChanged()}"
                     style="@style/temp_bar_slider"/>
 
                 <!-- Hysteresis -->
@@ -159,11 +160,26 @@
                     app:trackColorActive="@color/color_hysteresis"
                     app:trackColorInactive="@color/color_hysteresis_24"
                     app:thumbColor="@color/color_hysteresis"
+                    app:onChangeListener="@{() -> viewModel.onSliderChanged()}"
                     style="@style/temp_bar_slider"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
+
+        <!-- Save FAB -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_main_save_fab"
+            app:srcCompat="@drawable/ic_baseline_save_24"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/screen_horizontal_padding"
+            android:layout_marginBottom="@dimen/screen_vertical_padding"
+            android:visibility="@{viewModel.editMode}"
+            tools:visibility="visible"
+            tools:ignore="ContentDescription"
+            android:onClick="@{() -> viewModel.onSaveClicked()}"/>
 
     </FrameLayout>
 </layout>

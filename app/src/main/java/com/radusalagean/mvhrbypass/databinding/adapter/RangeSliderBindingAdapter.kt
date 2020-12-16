@@ -31,4 +31,11 @@ object RangeSliderBindingAdapter {
     fun setMinSeparationValue(rangeSlider: RangeSlider, minSeparationValue: Int) {
         rangeSlider.setMinSeparationValue(minSeparationValue.toFloat())
     }
+
+    @JvmStatic @BindingAdapter("onChangeListener")
+    fun setOnChangeListener(rangeSlider: RangeSlider, callback: Runnable) {
+        rangeSlider.addOnChangeListener { slider, value, fromUser ->
+            if (fromUser) callback.run()
+        }
+    }
 }

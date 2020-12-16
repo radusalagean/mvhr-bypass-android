@@ -23,4 +23,11 @@ object SliderBindingAdapter {
             attrChange.onChange()
         }
     }
+
+    @JvmStatic @BindingAdapter("onChangeListener")
+    fun setOnChangeListener(slider: Slider, callback: Runnable) {
+        slider.addOnChangeListener { slider, value, fromUser ->
+            if (fromUser) callback.run()
+        }
+    }
 }

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.radusalagean.mvhrbypass.R
-import com.radusalagean.mvhrbypass.generic.activity.ActivityContract
 import com.radusalagean.mvhrbypass.generic.viewmodel.BaseViewModel
 import com.radusalagean.mvhrbypass.network.SocketManager
 import com.radusalagean.mvhrbypass.network.SocketSubscriber
@@ -13,6 +12,7 @@ import com.radusalagean.mvhrbypass.network.model.State
 import com.radusalagean.mvhrbypass.network.model.Temperatures
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import java.util.*
 
 class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewModel(),
         KoinComponent, SocketSubscriber {
@@ -28,8 +28,13 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
     val extAd = MutableLiveData<TempTableEntryViewModel>()
     val intAd = MutableLiveData<TempTableEntryViewModel>()
     val intEv = MutableLiveData<TempTableEntryViewModel>()
+
+    val editMode = MutableLiveData(false)
+    var hysteresisOriginal: Float = 0.0f
     val hysteresis = MutableLiveData<Float>()
+    var intEvMinOriginal: Int = 0
     val intEvMin = MutableLiveData<Int>()
+    var extAdPairOriginal: Pair<Int, Int>? = null
     val extAdPair = MutableLiveData<Pair<Int, Int>>()
 
     private val socketManager: SocketManager by inject()
@@ -57,6 +62,21 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
         }
     }
 
+    fun onSliderChanged() {
+        refreshEditMode()
+    }
+
+    fun onSaveClicked() {
+        socketManager.requestApplyStateTemperatures(
+            intEvMin = intEvMin.value!!,
+            extAdMin = extAdPair.value!!.first,
+            extAdMax = extAdPair.value!!.second,
+            hysteresis = hysteresis.value!!
+        )
+        syncEditableFieldsWithOriginal()
+        refreshEditMode()
+    }
+
     fun connect() {
         val address: String = savedStateHandle[MainFragment.ARG_SOCKET_ADDRESS]!!
         socketManager.connect(address)
@@ -70,16 +90,25 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
         socketManager.unsubscribe(this)
     }
 
+    private fun syncEditableFieldsWithOriginal() {
+        intEvMin.value = intEvMinOriginal
+        extAdPair.value = extAdPairOriginal
+        hysteresis.value = hysteresisOriginal
+    }
+
     private fun assignState(state: State) {
         hrModeAuto.value = state.hrModeAuto
         hrDisabled.value = state.hrDisabled
-        hrModeTextResId.value = if (state.hrModeAuto)
+        hrModeTextResId.value = if (state.hrModeAuto == true)
             R.string.mode_auto else R.string.mode_manual
-        hrModeBackgroundColorResId.value = if (state.hrDisabled)
+        hrModeBackgroundColorResId.value = if (state.hrDisabled == true)
             R.color.color_cell_hr_disabled else R.color.color_cell_hr_enabled
-        intEvMin.value = state.intEvMin
-        extAdPair.value = state.extAdMin to state.extAdMax
-        hysteresis.value = state.hysteresis
+        intEvMinOriginal = state.intEvMin
+        extAdPairOriginal = state.extAdMin to state.extAdMax
+        hysteresisOriginal = state.hysteresis
+        if (editMode.value == false) {
+            syncEditableFieldsWithOriginal()
+        }
     }
 
     private fun assignTemperatures(temperatures: Temperatures) {
@@ -95,6 +124,16 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
                 if (temp == TEMP_ERROR) R.string.table_temp_error else R.string.table_temp_format,
                 if (temp == TEMP_ERROR) R.color.color_temp_error else R.color.color_temp_ok
         )
+    }
+
+    private fun refreshEditMode() {
+        editMode.value = isInEditMode()
+    }
+
+    private fun isInEditMode(): Boolean {
+        val originalHash = Objects.hash(hysteresisOriginal, intEvMinOriginal, extAdPairOriginal)
+        val currentHash = Objects.hash(hysteresis.value, intEvMin.value, extAdPair.value)
+        return originalHash != currentHash
     }
 
     override fun onInitDataReceived(initData: InitData) {
