@@ -3,6 +3,7 @@ package com.radusalagean.mvhrbypass.network
 import android.os.Handler
 import com.google.gson.Gson
 import com.radusalagean.mvhrbypass.network.event.SocketIncomingEvent
+import com.radusalagean.mvhrbypass.network.event.SocketOutgoingEvent
 import com.radusalagean.mvhrbypass.network.model.InitData
 import com.radusalagean.mvhrbypass.network.model.Root
 import com.radusalagean.mvhrbypass.network.model.State
@@ -67,6 +68,28 @@ class SocketManager(
             .url(address)
             .build()
         webSocket = okHttpClient.newWebSocket(request, socketListener)
+    }
+
+    fun requestHrModeAuto() {
+        sendEventOnlyMessage(SocketOutgoingEvent.REQUEST_HR_MODE_AUTO.eventName)
+    }
+
+    fun requestHrModeManual() {
+        sendEventOnlyMessage(SocketOutgoingEvent.REQUEST_HR_MODE_MANUAL.eventName)
+    }
+
+    fun requestEnableHr() {
+        sendEventOnlyMessage(SocketOutgoingEvent.REQUEST_ENABLE_HR.eventName)
+    }
+
+    fun requestDisableHr() {
+        sendEventOnlyMessage(SocketOutgoingEvent.REQUEST_DISABLE_HR.eventName)
+    }
+
+    private fun sendEventOnlyMessage(eventName: String) {
+        val root = Root<Unit>(eventName)
+        val json = gson.toJson(root)
+        webSocket.send(json)
     }
 
     fun subscribe(subscriber: SocketSubscriber) {

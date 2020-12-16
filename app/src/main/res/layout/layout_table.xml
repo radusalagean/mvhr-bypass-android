@@ -33,7 +33,7 @@
                 tools:background="@color/color_cell_hr_disabled"
                 app:backgroundColorResId="@{viewModel.hrModeBackgroundColorResId}"
                 android:textColor="@android:color/white"
-                android:onClick="@{() -> viewModel.onModeClick(activityContract)}" />
+                android:onClick="@{() -> viewModel.onModeClick()}" />
 
             <TextView
                 style="@style/table_cell_text_view"

@@ -20,6 +20,8 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
     val refreshing: LiveData<Boolean>
         get() = _refreshing
 
+    val hrModeAuto = MutableLiveData<Boolean>()
+    val hrDisabled = MutableLiveData<Boolean>()
     val hrModeTextResId = MutableLiveData<Int>()
     val hrModeBackgroundColorResId = MutableLiveData<Int>()
     val extEv = MutableLiveData<TempTableEntryViewModel>()
@@ -41,12 +43,18 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
         super.onCleared()
     }
 
-    fun onModeClick(activityContract: ActivityContract) {
-        activityContract.showInfoMessage(R.string.onClickStr)
+    fun onModeClick() {
+        socketManager.run {
+            if (hrModeAuto.value == true) requestHrModeManual() else requestHrModeAuto()
+        }
     }
 
-    fun onModeLongClick(activityContract: ActivityContract) {
-        activityContract.showWarningMessage(R.string.onLongClickStr)
+    fun onModeLongClick() {
+        socketManager.run {
+            if (hrModeAuto.value == false) {
+                if (hrDisabled.value == true) requestEnableHr() else requestDisableHr()
+            }
+        }
     }
 
     fun connect() {
@@ -63,6 +71,8 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
     }
 
     private fun assignState(state: State) {
+        hrModeAuto.value = state.hrModeAuto
+        hrDisabled.value = state.hrDisabled
         hrModeTextResId.value = if (state.hrModeAuto)
             R.string.mode_auto else R.string.mode_manual
         hrModeBackgroundColorResId.value = if (state.hrDisabled)

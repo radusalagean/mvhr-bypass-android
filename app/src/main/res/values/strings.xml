@@ -22,7 +22,4 @@
     <string name="exterior_admission">EXT AD</string>
     <string name="hysteresis">HYSTERESIS: ±%1$.1f</string>
 
-<!--    Debug-->
-    <string name="onClickStr">On Click</string>
-    <string name="onLongClickStr">On Long Click</string>
 </resources>

@@ -42,7 +42,7 @@ class MainFragment : BaseFragment(), SocketSubscriber {
 
     override fun registerListeners() {
         table_cell_current_mode.setOnLongClickListener {
-            viewModel.onModeLongClick(getActivityContract())
+            viewModel.onModeLongClick()
             true
         }
         socketManager.subscribe(this)
