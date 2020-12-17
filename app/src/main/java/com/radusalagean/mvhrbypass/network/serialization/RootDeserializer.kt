@@ -36,6 +36,9 @@ class RootDeserializer : JsonDeserializer<Root<*>> {
                 val temperatures: Temperatures = gson.fromJson(jsonObject[KEY_DATA], Temperatures::class.java)
                 return Root(event, temperatures)
             }
+            SocketIncomingEvent.RESPONSE_CONNECTION_BUSY.eventName -> {
+                return Root<Unit>(event)
+            }
         }
         error("Unknown event in deserializer")
     }

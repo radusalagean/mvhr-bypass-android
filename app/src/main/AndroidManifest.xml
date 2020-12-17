@@ -13,7 +13,10 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.MVHRBypass"
         android:fullBackupContent="false"
-        android:usesCleartextTraffic="true"> <!-- TODO Would be better to have a secure connection-->
+        android:usesCleartextTraffic="true">
+        <!-- Note: Secure Web sockets on ESP8266 are not natively supported, not worth implementing
+         an NGINX SSL proxy at the current scale of this project.
+         More info: https://github.com/Links2004/arduinoWebSockets -->
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

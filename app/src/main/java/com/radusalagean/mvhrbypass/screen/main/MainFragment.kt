@@ -64,6 +64,13 @@ class MainFragment : BaseFragment(), SocketSubscriber {
         }
     }
 
+    override fun onConnectionBusy() {
+        getActivityContract().run {
+            showErrorMessage(R.string.message_connection_busy)
+            popAllFragments()
+        }
+    }
+
     override fun getInfoBarContainer(): ViewGroup = fragment_main_root_view
 
     override fun onBackPressed(): Boolean {

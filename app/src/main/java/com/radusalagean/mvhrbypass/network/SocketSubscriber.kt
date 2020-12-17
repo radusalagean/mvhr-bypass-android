@@ -9,4 +9,5 @@ interface SocketSubscriber {
     fun onInitDataReceived(initData: InitData) {}
     fun onStateReceived(state: State) {}
     fun onTemperaturesReceived(temperatures: Temperatures) {}
+    fun onConnectionBusy() {}
 }

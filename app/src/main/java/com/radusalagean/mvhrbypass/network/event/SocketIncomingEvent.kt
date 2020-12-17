@@ -6,7 +6,8 @@ enum class SocketIncomingEvent {
 
     RESPONSE_INIT_DATA,
     RESPONSE_STATE,
-    RESPONSE_TEMPERATURES;
+    RESPONSE_TEMPERATURES,
+    RESPONSE_CONNECTION_BUSY;
 
     val eventName: String
         get() = name.toLowerCase(Locale.ROOT)

@@ -37,6 +37,8 @@ class SocketManager(
                         subscribers.forEach { it.onStateReceived(root.data as State) }
                     SocketIncomingEvent.RESPONSE_TEMPERATURES.eventName ->
                         subscribers.forEach { it.onTemperaturesReceived(root.data as Temperatures) }
+                    SocketIncomingEvent.RESPONSE_CONNECTION_BUSY.eventName ->
+                        subscribers.forEach { it.onConnectionBusy() }
                 }
             }
             Timber.d(root.toString())
