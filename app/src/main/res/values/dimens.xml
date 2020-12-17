@@ -5,6 +5,9 @@
     <dimen name="screen_horizontal_padding">16dp</dimen>
     <dimen name="screen_vertical_padding">16dp</dimen>
 
+<!--    Main Screen-->
+    <dimen name="main_screen_padding_bottom">96dp</dimen>
+
 <!--    Info Bar -->
     <dimen name="info_bar_vertical_padding">4dp</dimen>
     <dimen name="info_bar_horizontal_padding">8dp</dimen>

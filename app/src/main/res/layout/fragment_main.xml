@@ -36,7 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/screen_horizontal_padding"
-                android:paddingVertical="@dimen/screen_vertical_padding">
+                android:paddingTop="@dimen/screen_vertical_padding"
+                android:paddingBottom="@dimen/main_screen_padding_bottom">
 
                 <!-- Table -->
                 <include layout="@layout/layout_table"
