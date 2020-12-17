@@ -89,6 +89,10 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
         socketManager.connect(address)
     }
 
+    fun closeConnection() {
+        socketManager.closeConnection()
+    }
+
     private fun subscribe() {
         socketManager.subscribe(this)
     }

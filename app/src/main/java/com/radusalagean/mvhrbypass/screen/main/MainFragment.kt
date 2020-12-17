@@ -32,6 +32,16 @@ class MainFragment : BaseFragment(), SocketSubscriber {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.connect()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.closeConnection()
+    }
+
     override fun initViews() {
         
     }
@@ -54,7 +64,7 @@ class MainFragment : BaseFragment(), SocketSubscriber {
     }
 
     override fun loadData() {
-        viewModel.connect()
+
     }
 
     override fun onFailure() {
@@ -67,6 +77,13 @@ class MainFragment : BaseFragment(), SocketSubscriber {
     override fun onConnectionBusy() {
         getActivityContract().run {
             showErrorMessage(R.string.message_connection_busy)
+            popAllFragments()
+        }
+    }
+
+    override fun onConnectionClosed() {
+        getActivityContract().run {
+            showErrorMessage(R.string.message_connection_closed)
             popAllFragments()
         }
     }

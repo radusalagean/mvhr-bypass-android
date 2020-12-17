@@ -50,11 +50,11 @@ class SocketManager(
         }
 
         override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-            Timber.w("onClosing(): code = $code | reason = $reason")
+            Timber.d("onClosing(): code = $code | reason = $reason")
         }
 
         override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
-            Timber.w("onClosed(): code = $code | reason = $reason")
+            Timber.d("onClosed(): code = $code | reason = $reason")
         }
 
         override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
@@ -112,5 +112,15 @@ class SocketManager(
 
     fun unsubscribe(subscriber: SocketSubscriber) {
         subscribers.remove(subscriber)
+    }
+
+    fun closeConnection() {
+        webSocket.close(STATUS_CODE_1001, null)
+    }
+
+    companion object {
+        // Status codes: https://tools.ietf.org/html/rfc6455#section-7.4
+        const val STATUS_CODE_1000 = 1000
+        const val STATUS_CODE_1001 = 1001
     }
 }

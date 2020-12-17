@@ -4,6 +4,7 @@
 <!--    Messages-->
     <string name="message_connection_failed">Connection failed</string>
     <string name="message_connection_busy">Connection busy</string>
+    <string name="message_connection_closed">Connection closed</string>
 
 <!--    Connect Fragment -->
     <string name="connect_fragment_title">Connect</string>

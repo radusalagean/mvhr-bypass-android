@@ -10,4 +10,5 @@ interface SocketSubscriber {
     fun onStateReceived(state: State) {}
     fun onTemperaturesReceived(temperatures: Temperatures) {}
     fun onConnectionBusy() {}
+    fun onConnectionClosed() {}
 }
