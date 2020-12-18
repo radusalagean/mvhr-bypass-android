@@ -3,8 +3,10 @@ package com.radusalagean.mvhrbypass.di
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import android.os.Vibrator
 import com.google.gson.GsonBuilder
 import com.radusalagean.mvhrbypass.activity.MainActivity
+import com.radusalagean.mvhrbypass.haptic.HapticFeedbackManager
 import com.radusalagean.mvhrbypass.infobar.InfoBarManager
 import com.radusalagean.mvhrbypass.network.SocketManager
 import com.radusalagean.mvhrbypass.network.model.Root
@@ -30,6 +32,8 @@ val applicationModule = module {
     }
     single { SharedPreferencesRepository(get()) }
     single { Handler(Looper.getMainLooper()) }
+    single { get<Context>().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator }
+    single { HapticFeedbackManager(get()) }
     scope<MainActivity> {
         scoped { InfoBarManager() }
     }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.radusalagean.mvhrbypass.R
 import com.radusalagean.mvhrbypass.generic.viewmodel.BaseViewModel
+import com.radusalagean.mvhrbypass.haptic.HapticFeedbackManager
 import com.radusalagean.mvhrbypass.network.SocketManager
 import com.radusalagean.mvhrbypass.network.SocketSubscriber
 import com.radusalagean.mvhrbypass.network.model.InitData
@@ -18,7 +19,9 @@ import java.util.*
 class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewModel(),
         KoinComponent, SocketSubscriber {
 
-    private val sharedPreferencesRepository by inject<SharedPreferencesRepository>()
+    private val sharedPreferencesRepository: SharedPreferencesRepository by inject()
+    private val socketManager: SocketManager by inject()
+    private val hapticFeedbackManager: HapticFeedbackManager by inject()
 
     private val _refreshing = MutableLiveData(true)
     val refreshing: LiveData<Boolean>
@@ -40,8 +43,6 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
     val intEvMin = MutableLiveData<Int>()
     var extAdPairOriginal: Pair<Int, Int>? = null
     val extAdPair = MutableLiveData<Pair<Int, Int>>()
-
-    private val socketManager: SocketManager by inject()
 
     init {
         subscribe()
@@ -159,6 +160,7 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
 
     override fun onStateReceived(state: State) {
         assignState(state)
+        hapticFeedbackManager.shortFeedback()
     }
 
     override fun onTemperaturesReceived(temperatures: Temperatures) {
