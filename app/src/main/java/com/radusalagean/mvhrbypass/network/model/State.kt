@@ -1,7 +1,9 @@
 package com.radusalagean.mvhrbypass.network.model
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class State(
     @SerializedName("hrModeAuto") val hrModeAuto: Boolean? = null,
     @SerializedName("hrDisabled") val hrDisabled: Boolean? = null,
