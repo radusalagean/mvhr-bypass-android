@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:export-ydpi="260.09598"
+   inkscape:export-xdpi="260.09598"
+   inkscape:export-filename="C:\Users\radus\Desktop\mvhr-bypass-app-icon.png"
+   sodipodi:docname="drawing.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 100 68.75"
+   height="68.75mm"
+   width="100mm">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     inkscape:window-maximized="0"
+     inkscape:window-y="55"
+     inkscape:window-x="99"
+     inkscape:window-height="1275"
+     inkscape:window-width="2060"
+     fit-margin-bottom="0"
+     fit-margin-right="0"
+     fit-margin-left="0"
+     fit-margin-top="0"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="mm"
+     inkscape:cy="150.64511"
+     inkscape:cx="226.78092"
+     inkscape:zoom="1.979899"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <rect
+       y="0"
+       x="0"
+       height="34.375"
+       width="100"
+       id="rect871"
+       style="fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:2.85821;stroke-miterlimit:4;stroke-dasharray:none" />
+    <rect
+       style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:2.85821;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect873"
+       width="100"
+       height="34.375"
+       x="0"
+       y="34.375" />
+    <text
+       id="text849"
+       y="25.395103"
+       x="3.8892541"
+       style="font-style:normal;font-weight:normal;font-size:22.5778px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.404729"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:4.89215px;fill:#ffffff;stroke-width:0.404729"
+         y="25.395103"
+         x="3.8892541"
+         id="tspan847"
+         sodipodi:role="line">MVHR</tspan><tspan
+         id="tspan851"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0.238125px;fill:#ffffff;stroke-width:0.404729"
+         y="53.617355"
+         x="3.8892541"
+         sodipodi:role="line" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:22.5778px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.404729"
+       x="3.9624548"
+       y="57.499096"
+       id="text891"><tspan
+         sodipodi:role="line"
+         x="3.9624548"
+         y="57.499096"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5778px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0.238125px;fill:#ffffff;stroke-width:0.404729"
+         id="tspan889">Bypass</tspan></text>
+  </g>
+</svg>
