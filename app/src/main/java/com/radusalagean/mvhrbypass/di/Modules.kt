@@ -1,5 +1,6 @@
 package com.radusalagean.mvhrbypass.di
 
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import com.google.gson.GsonBuilder
@@ -8,6 +9,8 @@ import com.radusalagean.mvhrbypass.infobar.InfoBarManager
 import com.radusalagean.mvhrbypass.network.SocketManager
 import com.radusalagean.mvhrbypass.network.model.Root
 import com.radusalagean.mvhrbypass.network.serialization.RootDeserializer
+import com.radusalagean.mvhrbypass.persistence.sharedprefs.SharedPreferencesConstants
+import com.radusalagean.mvhrbypass.persistence.sharedprefs.SharedPreferencesRepository
 import com.radusalagean.mvhrbypass.screen.connect.ConnectFragment
 import com.radusalagean.mvhrbypass.screen.main.MainFragment
 import okhttp3.OkHttpClient
@@ -22,6 +25,10 @@ val applicationModule = module {
             .registerTypeAdapter(Root::class.java, get<RootDeserializer>())
             .create()
     }
+    single {
+        get<Context>().getSharedPreferences(SharedPreferencesConstants.FILE_NAME, Context.MODE_PRIVATE)
+    }
+    single { SharedPreferencesRepository(get()) }
     single { Handler(Looper.getMainLooper()) }
     scope<MainActivity> {
         scoped { InfoBarManager() }

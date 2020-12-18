@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.radusalagean.mvhrbypass.R
 import com.radusalagean.mvhrbypass.databinding.FragmentConnectBinding
 import com.radusalagean.mvhrbypass.generic.fragment.BaseFragment
 import kotlinx.android.synthetic.main.fragment_connect.*
@@ -44,6 +43,7 @@ class ConnectFragment : BaseFragment() {
     }
 
     override fun loadData() {
+        viewModel.loadData()
     }
 
     override fun getInfoBarContainer(): ViewGroup = fragment_connect_root_view

@@ -11,4 +11,5 @@ interface SocketSubscriber {
     fun onTemperaturesReceived(temperatures: Temperatures) {}
     fun onConnectionBusy() {}
     fun onConnectionClosed() {}
+    fun onConnectionOpen() {}
 }

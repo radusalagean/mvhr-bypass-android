@@ -10,12 +10,16 @@ import com.radusalagean.mvhrbypass.network.SocketSubscriber
 import com.radusalagean.mvhrbypass.network.model.InitData
 import com.radusalagean.mvhrbypass.network.model.State
 import com.radusalagean.mvhrbypass.network.model.Temperatures
+import com.radusalagean.mvhrbypass.persistence.sharedprefs.SharedPreferencesRepository
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.util.*
 
 class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewModel(),
         KoinComponent, SocketSubscriber {
+
+    private val sharedPreferencesRepository by inject<SharedPreferencesRepository>()
+
     private val _refreshing = MutableLiveData(true)
     val refreshing: LiveData<Boolean>
         get() = _refreshing
@@ -159,6 +163,12 @@ class MainViewModel(private val savedStateHandle: SavedStateHandle) : BaseViewMo
 
     override fun onTemperaturesReceived(temperatures: Temperatures) {
         assignTemperatures(temperatures)
+    }
+
+    override fun onConnectionOpen() {
+        sharedPreferencesRepository.setLastValidAddress(
+            savedStateHandle[MainFragment.ARG_SOCKET_ADDRESS]!!
+        )
     }
 
     companion object {

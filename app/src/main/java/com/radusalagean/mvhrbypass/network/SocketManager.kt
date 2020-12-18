@@ -24,6 +24,7 @@ class SocketManager(
 
         override fun onOpen(webSocket: WebSocket, response: Response) {
             Timber.d("onOpen()")
+            subscribers.forEach { it.onConnectionOpen() }
         }
 
         override fun onMessage(webSocket: WebSocket, text: String) {
@@ -67,7 +68,7 @@ class SocketManager(
 
     fun connect(address: String) {
         val request = Request.Builder()
-            .url(address)
+            .url("ws://$address")
             .build()
         webSocket = okHttpClient.newWebSocket(request, socketListener)
     }
