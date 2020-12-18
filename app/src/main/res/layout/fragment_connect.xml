@@ -41,6 +41,16 @@
             android:layout_marginTop="@dimen/spacing_xl"
             android:onClick="@{() -> viewModel.onConnectClicked(activityContract)}"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@{String.format(@string/version_name, viewModel.versionName)}"
+            tools:text="Version"
+            android:layout_marginBottom="@dimen/screen_vertical_padding"
+            android:layout_marginEnd="@dimen/screen_horizontal_padding"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

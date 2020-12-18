@@ -10,6 +10,7 @@
     <string name="connect_fragment_title">Connect</string>
     <string name="ip_address">IP Address</string>
     <string name="connect">Connect</string>
+    <string name="version_name">v%s</string>
 
 <!--    Main Fragment-->
     <string name="mode_auto">AUTO</string>
