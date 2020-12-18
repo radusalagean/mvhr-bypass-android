@@ -17,7 +17,8 @@
         <!-- Note: Secure Web sockets on ESP8266 are not natively supported, not worth implementing
          an NGINX SSL proxy at the current scale of this project.
          More info: https://github.com/Links2004/arduinoWebSockets -->
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
